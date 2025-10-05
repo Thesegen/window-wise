@@ -157,4 +157,118 @@
   .close-btn {
     display: block;
     margin-left: auto;
-    font-weight: b
+    font-weight: bold;
+    color: #00a685;
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+
+  .modal-content h2 {
+    margin-bottom: 15px;
+    color: #00a685;
+  }
+
+  .modal-content p {
+    line-height: 1.6;
+    font-size: 1rem;
+    margin: 0 auto;
+    max-width: 90%;
+    word-wrap: break-word;
+  }
+
+  /* Responsive fix */
+  @media (max-width: 768px) {
+    .menu-items {
+      right: -110px;
+      gap: 10px;
+    }
+    .menu-item {
+      padding: 8px 18px;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- Glass title section -->
+  <div class="glass-panel">
+    <h1>Window Wise</h1>
+    <p class="subtitle">Smart Project That Shows Brilliance</p>
+
+    <!-- Menu bubbles floating to the right -->
+    <div class="menu-items">
+      <div class="menu-item" data-modal="advantage">ADVANTAGE</div>
+      <div class="menu-item" data-modal="novelty">NOVELTY</div>
+      <div class="menu-item" data-modal="problem">PROBLEM STATEMENT</div>
+      <div class="menu-item" data-modal="commercial">COMMERCIALIZATION</div>
+      <div class="menu-item" data-modal="future">FUTURE PLAN</div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal" id="advantage">
+    <div class="modal-content">
+      <span class="close-btn">✖</span>
+      <h2>Advantage</h2>
+      <p>Write about the advantages of your project here.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="novelty">
+    <div class="modal-content">
+      <span class="close-btn">✖</span>
+      <h2>Novelty</h2>
+      <p>Explain what makes your project unique or innovative.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="problem">
+    <div class="modal-content">
+      <span class="close-btn">✖</span>
+      <h2>Problem Statement</h2>
+      <p>Describe the problem that your project addresses.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="commercial">
+    <div class="modal-content">
+      <span class="close-btn">✖</span>
+      <h2>Commercialization</h2>
+      <p>Describe how this project can be commercialized.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="future">
+    <div class="modal-content">
+      <span class="close-btn">✖</span>
+      <h2>Future Plan</h2>
+      <p>Explain the next steps and future developments.</p>
+    </div>
+  </div>
+
+  <script>
+    const menuItems = document.querySelectorAll('.menu-item');
+    const modals = document.querySelectorAll('.modal');
+    const closeBtns = document.querySelectorAll('.close-btn');
+
+    menuItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const modalId = item.getAttribute('data-modal');
+        document.getElementById(modalId).classList.add('active');
+      });
+    });
+
+    closeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.modal').classList.remove('active');
+      });
+    });
+
+    modals.forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
