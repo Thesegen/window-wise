@@ -20,12 +20,12 @@
     animation: bgFlow 15s ease infinite;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow-x: hidden;
-    position: relative;
     color: #111;
+    text-align: center;
+    flex-direction: column;
   }
 
   @keyframes bgFlow {
@@ -34,17 +34,15 @@
     100% { background-position: 0% 50%; }
   }
 
-  /* Center glass panel */
+  /* Glass card */
   .glass-panel {
     background: rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(15px);
     border-radius: 20px;
     padding: 40px 60px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    text-align: center;
     transition: all 0.5s ease;
     animation: fadeUp 1s ease forwards;
-    position: relative;
   }
 
   .glass-panel:hover {
@@ -71,34 +69,37 @@
     opacity: 0.85;
   }
 
-  /* Floating bubbles under title box (right-aligned) */
+  /* Bubbles row */
   .menu-items {
-    position: absolute;
-    top: 100%;
-    right: -150px; /* position to the right side of the glass box */
+    margin-top: 35px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 15px;
-    margin-top: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
   }
 
   .menu-item {
     background: linear-gradient(135deg, #00c9a7, #92fe9d);
     backdrop-filter: blur(8px);
-    border-radius: 50px;
-    padding: 10px 25px;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #fff;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    white-space: nowrap;
+    text-align: center;
+    padding: 10px;
   }
 
   .menu-item:hover {
-    transform: translateX(-5px);
+    transform: scale(1.08);
     background: linear-gradient(135deg, #00b894, #55efc4);
+    box-shadow: 0 0 25px rgba(0, 255, 200, 0.4);
   }
 
   /* Modal (popup) */
@@ -176,15 +177,12 @@
     word-wrap: break-word;
   }
 
-  /* Responsive fix */
-  @media (max-width: 768px) {
-    .menu-items {
-      right: -110px;
-      gap: 10px;
-    }
+  /* Responsive */
+  @media (max-width: 600px) {
     .menu-item {
-      padding: 8px 18px;
-      font-size: 0.9rem;
+      width: 70px;
+      height: 70px;
+      font-size: 0.8rem;
     }
   }
 </style>
@@ -194,15 +192,15 @@
   <div class="glass-panel">
     <h1>Window Wise</h1>
     <p class="subtitle">Smart Project That Shows Brilliance</p>
+  </div>
 
-    <!-- Menu bubbles floating to the right -->
-    <div class="menu-items">
-      <div class="menu-item" data-modal="advantage">ADVANTAGE</div>
-      <div class="menu-item" data-modal="novelty">NOVELTY</div>
-      <div class="menu-item" data-modal="problem">PROBLEM STATEMENT</div>
-      <div class="menu-item" data-modal="commercial">COMMERCIALIZATION</div>
-      <div class="menu-item" data-modal="future">FUTURE PLAN</div>
-    </div>
+  <!-- Bubbles row centered below -->
+  <div class="menu-items">
+    <div class="menu-item" data-modal="advantage">ADVANTAGE</div>
+    <div class="menu-item" data-modal="novelty">NOVELTY</div>
+    <div class="menu-item" data-modal="problem">PROBLEM</div>
+    <div class="menu-item" data-modal="commercial">COMMERCIAL</div>
+    <div class="menu-item" data-modal="future">FUTURE</div>
   </div>
 
   <!-- Modals -->
