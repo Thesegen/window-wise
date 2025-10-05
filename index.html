@@ -44,6 +44,7 @@
     text-align: center;
     transition: all 0.5s ease;
     animation: fadeUp 1s ease forwards;
+    position: relative;
   }
 
   .glass-panel:hover {
@@ -70,66 +71,34 @@
     opacity: 0.85;
   }
 
-  /* Floating Menu - Top Right */
-  .menu-container {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-    z-index: 999;
-  }
-
-  .menu-btn {
-    background: linear-gradient(135deg, #00c9a7, #92fe9d);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    color: white;
-    font-size: 1.8rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-  }
-
-  .menu-btn:hover {
-    transform: rotate(90deg);
-  }
-
+  /* Floating bubbles under title box (right-aligned) */
   .menu-items {
     position: absolute;
-    top: 70px;
-    right: 5px;
+    top: 100%;
+    right: -150px; /* position to the right side of the glass box */
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 10px;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-20px);
-    transition: all 0.4s ease;
-  }
-
-  .menu-container.active .menu-items {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
+    gap: 15px;
+    margin-top: 20px;
   }
 
   .menu-item {
-    background: rgba(255, 255, 255, 0.25);
+    background: linear-gradient(135deg, #00c9a7, #92fe9d);
     backdrop-filter: blur(8px);
-    border-radius: 25px;
-    padding: 8px 18px;
-    color: #0b0b0b;
+    border-radius: 50px;
+    padding: 10px 25px;
+    color: #fff;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.3s ease, background 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
   }
 
   .menu-item:hover {
-    transform: translateX(-4px);
-    background: rgba(255, 255, 255, 0.5);
+    transform: translateX(-5px);
+    background: linear-gradient(135deg, #00b894, #55efc4);
   }
 
   /* Modal (popup) */
@@ -157,14 +126,14 @@
     max-height: 80vh;
     padding: 40px;
     border-radius: 16px;
-    text-align: center; /* centers text horizontally */
+    text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     transform: translateY(30px);
     animation: popUp 0.4s ease forwards;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* centers vertically */
-    overflow-y: auto; /* scrolls only if text is too long */
+    justify-content: center;
+    overflow-y: auto;
   }
 
   .modal-content::-webkit-scrollbar {
@@ -188,116 +157,4 @@
   .close-btn {
     display: block;
     margin-left: auto;
-    font-weight: bold;
-    color: #00a685;
-    cursor: pointer;
-    font-size: 1.1rem;
-  }
-
-  .modal-content h2 {
-    margin-bottom: 15px;
-    color: #00a685;
-  }
-
-  .modal-content p {
-    line-height: 1.6;
-    font-size: 1rem;
-    margin: 0 auto;
-    max-width: 90%;
-    word-wrap: break-word;
-  }
-</style>
-</head>
-<body>
-  <!-- Glass title section -->
-  <div class="glass-panel">
-    <h1>Window Wise</h1>
-    <p class="subtitle">Smart Project That Shows Brilliance </p>
-  </div>
-
-  <!-- Floating Menu -->
-  <div class="menu-container" id="menuContainer">
-    <button class="menu-btn" id="menuBtn">☰</button>
-    <div class="menu-items">
-      <div class="menu-item" data-modal="advantage">ADVANTAGE</div>
-      <div class="menu-item" data-modal="novelty">NOVELTY</div>
-      <div class="menu-item" data-modal="problem">PROBLEM STATEMENT</div>
-      <div class="menu-item" data-modal="commercial">COMMERCIALIZATION</div>
-      <div class="menu-item" data-modal="future">FUTURE PLAN</div>
-    </div>
-  </div>
-
-  <!-- Modals -->
-  <div class="modal" id="advantage">
-    <div class="modal-content">
-      <span class="close-btn">✖</span>
-      <h2>Advantage</h2>
-      <p>Write about the advantages of your proje</p>
-    </div>
-  </div>
-
-  <div class="modal" id="novelty">
-    <div class="modal-content">
-      <span class="close-btn">✖</span>
-      <h2>Novelty</h2>
-      <p>Explain what makes your projec</p>
-    </div>
-  </div>
-
-  <div class="modal" id="problem">
-    <div class="modal-content">
-      <span class="close-btn">✖</span>
-      <h2>Problem Statement</h2>
-      <p>Describe the proble</p>
-    </div>
-  </div>
-
-  <div class="modal" id="commercial">
-    <div class="modal-content">
-      <span class="close-btn">✖</span>
-      <h2>Commercialization</h2>
-      <p>Describe how this pr</p>
-    </div>
-  </div>
-
-  <div class="modal" id="future">
-    <div class="modal-content">
-      <span class="close-btn">✖</span>
-      <h2>Future Plan</h2>
-      <p>Explain the next</p>
-    </div>
-  </div>
-
-  <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const menuContainer = document.getElementById('menuContainer');
-    const menuItems = document.querySelectorAll('.menu-item');
-    const modals = document.querySelectorAll('.modal');
-    const closeBtns = document.querySelectorAll('.close-btn');
-
-    menuBtn.addEventListener('click', () => {
-      menuContainer.classList.toggle('active');
-    });
-
-    menuItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const modalId = item.getAttribute('data-modal');
-        document.getElementById(modalId).classList.add('active');
-        menuContainer.classList.remove('active');
-      });
-    });
-
-    closeBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        btn.closest('.modal').classList.remove('active');
-      });
-    });
-
-    modals.forEach(modal => {
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.classList.remove('active');
-      });
-    });
-  </script>
-</body>
-</html>
+    font-weight: b
