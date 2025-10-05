@@ -143,6 +143,7 @@
     align-items: center;
     animation: fadeIn 0.3s ease forwards;
     z-index: 998;
+    padding: 20px;
   }
 
   .modal.active {
@@ -152,13 +153,26 @@
   .modal-content {
     background: rgba(255, 255, 255, 0.95);
     color: #111;
-    width: min(90%, 600px);
-    padding: 30px;
+    width: min(90%, 700px);
+    max-height: 80vh;
+    padding: 40px;
     border-radius: 16px;
-    text-align: left;
+    text-align: center; /* centers text horizontally */
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     transform: translateY(30px);
     animation: popUp 0.4s ease forwards;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centers vertically */
+    overflow-y: auto; /* scrolls only if text is too long */
+  }
+
+  .modal-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  .modal-content::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
   }
 
   @keyframes popUp {
@@ -181,12 +195,16 @@
   }
 
   .modal-content h2 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     color: #00a685;
   }
 
   .modal-content p {
     line-height: 1.6;
+    font-size: 1rem;
+    margin: 0 auto;
+    max-width: 90%;
+    word-wrap: break-word;
   }
 </style>
 </head>
@@ -214,7 +232,7 @@
     <div class="modal-content">
       <span class="close-btn">✖</span>
       <h2>Advantage</h2>
-      <p>Write about the advantages of your project here...</p>
+      <p>Write about the advantages of your project here... You can add as much text as you want — the box will stay centered and scroll if needed.</p>
     </div>
   </div>
 
