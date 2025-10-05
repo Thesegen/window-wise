@@ -20,12 +20,11 @@
     animation: bgFlow 15s ease infinite;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow-x: hidden;
     color: #111;
-    text-align: center;
-    flex-direction: column;
   }
 
   @keyframes bgFlow {
@@ -34,13 +33,14 @@
     100% { background-position: 0% 50%; }
   }
 
-  /* Glass card */
+  /* Glass title card */
   .glass-panel {
     background: rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(15px);
     border-radius: 20px;
     padding: 40px 60px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
     transition: all 0.5s ease;
     animation: fadeUp 1s ease forwards;
   }
@@ -69,37 +69,52 @@
     opacity: 0.85;
   }
 
-  /* Bubbles row */
+  /* Floating bubble row */
   .menu-items {
-    margin-top: 35px;
+    margin-top: 50px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 40px;
   }
 
   .menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .bubble {
     background: linear-gradient(135deg, #00c9a7, #92fe9d);
-    backdrop-filter: blur(8px);
     border-radius: 50%;
     width: 90px;
     height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
   }
 
-  .menu-item:hover {
+  .bubble img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+  }
+
+  .menu-item:hover .bubble {
     transform: scale(1.08);
-    background: linear-gradient(135deg, #00b894, #55efc4);
     box-shadow: 0 0 25px rgba(0, 255, 200, 0.4);
+  }
+
+  .bubble-label {
+    margin-top: 12px;
+    font-weight: 600;
+    color: #0b0b0b;
+    letter-spacing: 0.5px;
   }
 
   /* Modal (popup) */
@@ -176,31 +191,53 @@
     max-width: 90%;
     word-wrap: break-word;
   }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    .menu-item {
-      width: 70px;
-      height: 70px;
-      font-size: 0.8rem;
-    }
-  }
 </style>
 </head>
 <body>
-  <!-- Glass title section -->
+
+  <!-- Glassy Title Section -->
   <div class="glass-panel">
     <h1>Window Wise</h1>
     <p class="subtitle">Smart Project That Shows Brilliance</p>
   </div>
 
-  <!-- Bubbles row centered below -->
+  <!-- Floating Bubbles -->
   <div class="menu-items">
-    <div class="menu-item" data-modal="advantage">ADVANTAGE</div>
-    <div class="menu-item" data-modal="novelty">NOVELTY</div>
-    <div class="menu-item" data-modal="problem">PROBLEM</div>
-    <div class="menu-item" data-modal="commercial">COMMERCIAL</div>
-    <div class="menu-item" data-modal="future">FUTURE</div>
+    <div class="menu-item" data-modal="advantage">
+      <div class="bubble">
+        <!-- 👇 Replace YOUR_IMAGE_NAME_HERE with actual file name (e.g. advantage.png) -->
+        <img src="image/YOUR_IMAGE_NAME_HERE" alt="Advantage Icon">
+      </div>
+      <div class="bubble-label">ADVANTAGE</div>
+    </div>
+
+    <div class="menu-item" data-modal="novelty">
+      <div class="bubble">
+        <img src="image/YOUR_IMAGE_NAME_HERE" alt="Novelty Icon">
+      </div>
+      <div class="bubble-label">NOVELTY</div>
+    </div>
+
+    <div class="menu-item" data-modal="problem">
+      <div class="bubble">
+        <img src="image/YOUR_IMAGE_NAME_HERE" alt="Problem Icon">
+      </div>
+      <div class="bubble-label">PROBLEM</div>
+    </div>
+
+    <div class="menu-item" data-modal="commercial">
+      <div class="bubble">
+        <img src="image/YOUR_IMAGE_NAME_HERE" alt="Commercial Icon">
+      </div>
+      <div class="bubble-label">COMMERCIAL</div>
+    </div>
+
+    <div class="menu-item" data-modal="future">
+      <div class="bubble">
+        <img src="image/YOUR_IMAGE_NAME_HERE" alt="Future Icon">
+      </div>
+      <div class="bubble-label">FUTURE</div>
+    </div>
   </div>
 
   <!-- Modals -->
@@ -208,7 +245,7 @@
     <div class="modal-content">
       <span class="close-btn">✖</span>
       <h2>Advantage</h2>
-      <p>Write about the advantages of your project here.</p>
+      <p>Write about the advantages of your project.</p>
     </div>
   </div>
 
@@ -224,7 +261,7 @@
     <div class="modal-content">
       <span class="close-btn">✖</span>
       <h2>Problem Statement</h2>
-      <p>Describe the problem that your project addresses.</p>
+      <p>Describe the problem your project aims to solve.</p>
     </div>
   </div>
 
@@ -232,7 +269,7 @@
     <div class="modal-content">
       <span class="close-btn">✖</span>
       <h2>Commercialization</h2>
-      <p>Describe how this project can be commercialized.</p>
+      <p>Explain how your project could be commercialized.</p>
     </div>
   </div>
 
@@ -240,7 +277,7 @@
     <div class="modal-content">
       <span class="close-btn">✖</span>
       <h2>Future Plan</h2>
-      <p>Explain the next steps and future developments.</p>
+      <p>Describe the future plans or improvements for your project.</p>
     </div>
   </div>
 
