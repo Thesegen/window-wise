@@ -1,4 +1,4 @@
-e<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -10,9 +10,9 @@ e<!DOCTYPE html>
 
 <style>
   :root {
-    --grad-1: #00C9A7;
-    --grad-2: #92FE9D;
-    --grad-3: #C3E7F3;
+    --grad-1: #009879;
+    --grad-2: #40E0D0;
+    --grad-3: #A7FFEB;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -84,6 +84,7 @@ e<!DOCTYPE html>
     justify-content: center;
     flex-wrap: wrap;
     gap: 40px;
+    animation: fadeIn 1.5s ease forwards;
   }
 
   .menu-item {
@@ -92,17 +93,31 @@ e<!DOCTYPE html>
     align-items: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    animation: floatUp 1.2s ease forwards;
+    opacity: 0;
+  }
+
+  /* Bubble fade-in delay for staggered effect */
+  .menu-item:nth-child(1) { animation-delay: 0.2s; }
+  .menu-item:nth-child(2) { animation-delay: 0.4s; }
+  .menu-item:nth-child(3) { animation-delay: 0.6s; }
+  .menu-item:nth-child(4) { animation-delay: 0.8s; }
+  .menu-item:nth-child(5) { animation-delay: 1s; }
+
+  @keyframes floatUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
   }
 
   .bubble {
-    background: linear-gradient(135deg, #00c9a7, #92fe9d);
+    background: linear-gradient(135deg, #009879, #40E0D0, #7FFFD4);
     border-radius: 50%;
     width: 90px;
     height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
   }
@@ -151,23 +166,26 @@ e<!DOCTYPE html>
     max-height: 80vh;
     padding: 40px;
     border-radius: 16px;
-    text-align: center;
+    text-align: left;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     transform: translateY(30px);
     animation: popUp 0.4s ease forwards;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     overflow-y: auto;
     font-family: 'Poppins', sans-serif;
   }
 
-  .modal-content::-webkit-scrollbar {
-    width: 8px;
+  .modal-content ul {
+    margin-top: 10px;
+    padding-left: 25px;
+    list-style-type: disc;
   }
-  .modal-content::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.2);
-    border-radius: 10px;
+
+  .modal-content li {
+    margin-bottom: 10px;
+    line-height: 1.6;
   }
 
   @keyframes popUp {
@@ -193,14 +211,6 @@ e<!DOCTYPE html>
     font-family: 'Raleway', sans-serif;
     margin-bottom: 15px;
     color: #00a685;
-  }
-
-  .modal-content p {
-    line-height: 1.6;
-    font-size: 1rem;
-    margin: 0 auto;
-    max-width: 90%;
-    word-wrap: break-word;
   }
 </style>
 </head>
@@ -237,7 +247,7 @@ e<!DOCTYPE html>
 
     <div class="menu-item" data-modal="commercial">
       <div class="bubble">
-        <img src="images/comercial.png" alt="Commercial Icon">
+        <img src="images/commercial.png" alt="Commercial Icon">
       </div>
       <div class="bubble-label">COMMERCIAL</div>
     </div>
@@ -255,7 +265,11 @@ e<!DOCTYPE html>
     <div class="modal-content">
       <span class="close-btn">✖</span>
       <h2>Advantage</h2>
-      <p>Write about the advantages of your project.</p>
+      <ul>
+        <li>• Write your first advantage point here.</li>
+        <li>• Add your second advantage point here.</li>
+        <li>• Continue adding as many bullet points as needed.</li>
+      </ul>
     </div>
   </div>
 
@@ -263,7 +277,10 @@ e<!DOCTYPE html>
     <div class="modal-content">
       <span class="close-btn">✖</span>
       <h2>Novelty</h2>
-      <p>Explain what makes your project unique or innovative.</p>
+      <ul>
+        <li>• Mention what makes your project innovative.</li>
+        <li>• Include special features or unique aspects.</li>
+      </ul>
     </div>
   </div>
 
@@ -271,7 +288,10 @@ e<!DOCTYPE html>
     <div class="modal-content">
       <span class="close-btn">✖</span>
       <h2>Problem Statement</h2>
-      <p>Describe the problem your project aims to solve.</p>
+      <ul>
+        <li>• Describe the main problem your project addresses.</li>
+        <li>• Explain why solving this problem is important.</li>
+      </ul>
     </div>
   </div>
 
@@ -279,9 +299,10 @@ e<!DOCTYPE html>
     <div class="modal-content">
       <span class="close-btn">✖</span>
       <h2>Commercialization</h2>
-      <h1>.</h1><p> Through Malaysia's Ministry of Local Government Development, we are able to reach our target audience.</p>
-      <h1>.</h1><p> We may sell our project to major construction firms for their next projects, like UEM Group Malaysia and SUNWAY Group.</p>
-      <h1>.</h1><p> With a limited choice and affordable price on social media / online sales platform such as Shopee, Lazada, Mudah.com, Amazon and others.</p>
+      <ul>
+        <li>• Through Malaysia's Ministry of Local Government Development, we are able to reach our target audience.</li>
+        <li>• Mention its business or social potential.</li>
+      </ul>
     </div>
   </div>
 
@@ -289,7 +310,10 @@ e<!DOCTYPE html>
     <div class="modal-content">
       <span class="close-btn">✖</span>
       <h2>Future Plan</h2>
-      <p>Describe the future plans or improvements for your project.</p>
+      <ul>
+        <li>• List upcoming improvements or upgrades.</li>
+        <li>• Mention future scope of expansion or innovation.</li>
+      </ul>
     </div>
   </div>
 
