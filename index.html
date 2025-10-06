@@ -4,25 +4,24 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Window Wise</title>
+
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500&family=Raleway:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  /* 🌿 Emerald Flow Gradient */
-  --grad-1: #00C897;
-  --grad-2: #00FFD1;
-  --grad-3: #8FFFCE;
+  --grad-1: #00c3ff;
+  --grad-2: #00e6a1;
+  --grad-3: #a7ffeb;
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at 30% 50%, var(--grad-1), var(--grad-2), var(--grad-3));
+  background: linear-gradient(120deg, var(--grad-1), var(--grad-2), var(--grad-3));
   background-size: 300% 300%;
-  animation: bgFlow 10s ease-in-out infinite;
+  animation: bgFlow 18s ease infinite;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -30,155 +29,196 @@ body {
   justify-content: center;
   overflow-x: hidden;
   color: #111;
+  position: relative;
 }
+
+/* Animated gradient flow */
 @keyframes bgFlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* 🪞 Glass title card */
+/* Particle effect */
+body::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: drift 40s linear infinite;
+  z-index: 0;
+  opacity: 0.4;
+}
+@keyframes drift {
+  from { background-position: 0 0; }
+  to { background-position: 1000px 1000px; }
+}
+
+/* 🌟 Logo on Top */
+.logo-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+  z-index: 2;
+}
+.logo-top {
+  width: 140px;
+  height: auto;
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.5));
+  animation: floatLogo 5s ease-in-out infinite;
+}
+@keyframes floatLogo {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Reflection */
+.logo-reflection {
+  width: 140px;
+  height: auto;
+  transform: scaleY(-1);
+  opacity: 0.15;
+  filter: blur(3px);
+  margin-top: -8px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
+}
+
+/* Glassy Title Card */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.18);
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(15px);
   border-radius: 20px;
   padding: 40px 60px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   text-align: center;
-  animation: fadeUp 1s ease forwards;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: fadeUp 1.2s ease forwards;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(25px); }
   to { opacity: 1; transform: translateY(0); }
 }
 h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 3rem;
+  font-size: 3.2rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(0,255,200,0.6), 0 0 30px rgba(0,200,255,0.3);
   letter-spacing: 1px;
-  color: #0b0b0b;
-  text-shadow: 0 3px 15px rgba(255, 255, 255, 0.25);
 }
 .subtitle {
   font-family: 'Raleway', sans-serif;
-  font-size: 1.15rem;
-  color: #333;
-  opacity: 0.85;
+  font-size: 1.2rem;
+  color: #f5f5f5;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
 }
 
-/* 🌐 Floating bubbles row */
+/* Floating bubbles */
 .menu-items {
-  margin-top: 50px;
+  margin-top: 60px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 50px;
-  animation: fadeIn 1.2s ease forwards;
+  gap: 45px;
+  z-index: 2;
 }
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 .menu-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  transition: all 0.3s ease;
-  animation: bubbleFloat 3s ease-in-out infinite;
-  opacity: 0;
-  animation-fill-mode: forwards;
+  animation: float 3s ease-in-out infinite;
+  transition: all 0.4s ease;
 }
-.menu-item:nth-child(1) { animation-delay: 0.2s; }
-.menu-item:nth-child(2) { animation-delay: 0.4s; }
-.menu-item:nth-child(3) { animation-delay: 0.6s; }
-.menu-item:nth-child(4) { animation-delay: 0.8s; }
-.menu-item:nth-child(5) { animation-delay: 1s; }
-
-@keyframes bubbleFloat {
-  0%, 100% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(-12px); }
+.menu-item:nth-child(odd) { animation-delay: 0.5s; }
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
 }
 
-/* 💫 Bubble Style */
 .bubble {
-  background: linear-gradient(135deg, #00E8A2, #00FFD1, #7CFFC4);
+  background: linear-gradient(135deg, #00d6b0, #00ff88);
   border-radius: 50%;
-  width: 95px;
-  height: 95px;
+  width: 100px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 20px rgba(0, 255, 200, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 30px rgba(0,255,180,0.4);
   overflow: hidden;
+  transition: all 0.4s ease;
   position: relative;
+}
+.bubble:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 45px rgba(0,255,150,0.6);
 }
 .bubble img {
   width: 60%;
   height: 60%;
   object-fit: contain;
-  z-index: 2;
-}
-.bubble::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top left, rgba(255,255,255,0.6), transparent 70%);
-  opacity: 0.6;
-}
-.bubble:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 35px rgba(0, 255, 200, 0.6);
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
 }
 .bubble-label {
   font-family: 'Raleway', sans-serif;
   margin-top: 12px;
   font-weight: 600;
-  color: #0b0b0b;
-  letter-spacing: 0.5px;
+  color: #fff;
+  text-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
 
-/* 🪟 Modal */
+/* Modal */
 .modal {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(6px);
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 998;
+  animation: fadeIn 0.3s ease forwards;
+  z-index: 999;
   padding: 20px;
 }
-.modal.active {
-  display: flex;
-}
+.modal.active { display: flex; }
+
 .modal-content {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.97);
   color: #111;
   width: min(90%, 700px);
   max-height: 80vh;
   padding: 40px;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  text-align: left;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
   transform: translateY(30px);
   animation: popUp 0.4s ease forwards;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   overflow-y: auto;
+  font-family: 'Poppins', sans-serif;
+}
+.modal-content ul {
+  margin-top: 10px;
+  padding-left: 25px;
+  list-style-type: disc;
+}
+.modal-content li {
+  margin-bottom: 10px;
+  line-height: 1.6;
 }
 @keyframes popUp {
   from { transform: translateY(30px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
-}
-.modal-content h2 {
-  color: #00a685;
-  font-family: 'Raleway', sans-serif;
-  margin-bottom: 15px;
-}
-.modal-content ul {
-  padding-left: 25px;
-  list-style-type: disc;
 }
 .close-btn {
   display: block;
@@ -186,17 +226,31 @@ h1 {
   font-weight: bold;
   color: #00a685;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+}
+.modal-content h2 {
+  font-family: 'Raleway', sans-serif;
+  margin-bottom: 15px;
+  color: #00a685;
 }
 </style>
 </head>
 
 <body>
+
+<!-- 🌟 Logo Section with Reflection -->
+<div class="logo-container">
+  <img src="images/logo.png" alt="Window Wise Logo" class="logo-top">
+  <img src="images/logo.png" alt="Reflection" class="logo-reflection">
+</div>
+
+<!-- 💎 Title Card -->
 <div class="glass-panel">
   <h1>Window Wise</h1>
   <p class="subtitle">Smart Project That Shows Brilliance</p>
 </div>
 
+<!-- 🌐 Floating Bubbles -->
 <div class="menu-items">
   <div class="menu-item" data-modal="advantage">
     <div class="bubble"><img src="images/benefit.png" alt="Advantage Icon"></div>
@@ -220,7 +274,7 @@ h1 {
   </div>
 </div>
 
-<!-- Modals (text copied from your second code) -->
+<!-- 📋 Modals -->
 <div class="modal" id="advantage">
   <div class="modal-content">
     <span class="close-btn">✖</span>
@@ -256,9 +310,7 @@ h1 {
   <div class="modal-content">
     <span class="close-btn">✖</span>
     <h2>Problem Statement</h2>
-    <p>
-      In modern residential buildings, managing indoor environments efficiently and ensuring safety while reducing energy consumption remains a significant challenge. Traditional window systems lack the automation needed to adapt to varying environmental conditions, leading to inefficient ventilation, increased energy use, and potential safety risks. For instance, windows often remain open during rain or close when it's unnecessary, and do not automatically respond to temperature changes, smoke detection, or external movement. To address these issues, there is a need for an intelligent window system that integrates various sensors to automate window operation based on real-time environmental data. The system must be capable of responding to rain, smoke, temperature fluctuations, and movement to optimize indoor comfort, enhance safety, and reduce reliance on HVAC systems. Additionally, it should provide real-time status updates and notifications to the user, ensuring effective management of the window's operation.
-    </p>
+    <p>Write your detailed explanation here...</p>
   </div>
 </div>
 
@@ -268,8 +320,7 @@ h1 {
     <h2>Commercialization</h2>
     <ul>
       <li>Through Malaysia's Ministry of Local Government Development, we are able to reach our target audience.</li>
-      <li>Mention its business or social potential.</li>
-      <li>With a limited choice and affordable price on social media / online sales platform such as Shopee, Lazada, Mudah.com.</li>
+      <li>Affordable pricing through e-commerce platforms like Shopee, Lazada, or Amazon.</li>
     </ul>
   </div>
 </div>
@@ -277,13 +328,8 @@ h1 {
 <div class="modal" id="future">
   <div class="modal-content">
     <span class="close-btn">✖</span>
-    <h2>HVAC / Future Plan</h2>
-    <p>
-      HVAC stands for Heating, Ventilation, and Air Conditioning. It refers to the system used to regulate and maintain indoor climate in buildings. This system is crucial for maintaining comfort in various settings, including corporate environments and hospitals. In many buildings, windows are fixed and do not open or close. As a result, sunlight hitting these windows during the day can significantly increase the indoor temperature, causing HVAC systems, particularly air conditioners, to work harder to cool the space. This not only leads to higher electricity bills but also contributes to increased air pollution.
-    </p>
-    <p>
-      To address these challenges, we are implementing a solution involving photochromic films applied to the windows. These films automatically darken when exposed to sunlight, reducing heat buildup inside the building, and revert to a transparent state when sunlight is no longer present. This approach helps to lower energy consumption, reduce electricity costs, and decrease the overall environmental impact by lessening the reliance on air conditioning.
-    </p>
+    <h2>Future Plan</h2>
+    <p>Describe future updates or improvements.</p>
   </div>
 </div>
 
@@ -295,15 +341,13 @@ const closeBtns = document.querySelectorAll('.close-btn');
 menuItems.forEach(item => {
   item.addEventListener('click', () => {
     const modalId = item.getAttribute('data-modal');
-    const target = document.getElementById(modalId);
-    if (target) target.classList.add('active');
+    document.getElementById(modalId).classList.add('active');
   });
 });
 
 closeBtns.forEach(btn => {
   btn.addEventListener('click', () => {
-    const modal = btn.closest('.modal');
-    if (modal) modal.classList.remove('active');
+    btn.closest('.modal').classList.remove('active');
   });
 });
 
@@ -313,5 +357,6 @@ modals.forEach(modal => {
   });
 });
 </script>
+
 </body>
 </html>
