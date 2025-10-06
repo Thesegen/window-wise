@@ -4,24 +4,25 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Window Wise</title>
-
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500&family=Raleway:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --grad-1: #00c3ff;
-  --grad-2: #00e6a1;
-  --grad-3: #a7ffeb;
+  /* 🌿 Emerald Flow Gradient */
+  --grad-1: #00C897;
+  --grad-2: #00FFD1;
+  --grad-3: #8FFFCE;
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(120deg, var(--grad-1), var(--grad-2), var(--grad-3));
+  background: radial-gradient(circle at 30% 50%, var(--grad-1), var(--grad-2), var(--grad-3));
   background-size: 300% 300%;
-  animation: bgFlow 18s ease infinite;
+  animation: bgFlow 10s ease-in-out infinite;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -29,77 +30,54 @@ body {
   justify-content: center;
   overflow-x: hidden;
   color: #111;
-  position: relative;
 }
-
-/* Glowing particle dots */
-body::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: drift 40s linear infinite;
-  z-index: 0;
-  opacity: 0.4;
-}
-
-@keyframes drift {
-  from { background-position: 0 0; }
-  to { background-position: 1000px 1000px; }
-}
-
 @keyframes bgFlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Glassy Title Section */
+/* 🪞 Glass title card */
 .glass-panel {
-  position: relative;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(15px);
   border-radius: 20px;
   padding: 40px 60px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   text-align: center;
-  animation: fadeUp 1.2s ease forwards;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeUp 1s ease forwards;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
-
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 3.2rem;
-  font-weight: 600;
-  color: #fff;
-  text-shadow: 0 0 15px rgba(0,255,200,0.6), 0 0 30px rgba(0,200,255,0.3);
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-family: 'Raleway', sans-serif;
-  font-size: 1.2rem;
-  color: #f5f5f5;
-  opacity: 0.9;
-  letter-spacing: 0.5px;
-}
-
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(25px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  letter-spacing: 1px;
+  color: #0b0b0b;
+  text-shadow: 0 3px 15px rgba(255, 255, 255, 0.25);
+}
+.subtitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.15rem;
+  color: #333;
+  opacity: 0.85;
+}
 
-/* Floating bubbles */
+/* 🌐 Floating bubbles row */
 .menu-items {
-  margin-top: 60px;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 45px;
-  z-index: 2;
+  gap: 50px;
+  animation: fadeIn 1.2s ease forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .menu-item {
@@ -107,108 +85,100 @@ h1 {
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  animation: float 5s ease-in-out infinite;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
+  animation: bubbleFloat 3s ease-in-out infinite;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+.menu-item:nth-child(1) { animation-delay: 0.2s; }
+.menu-item:nth-child(2) { animation-delay: 0.4s; }
+.menu-item:nth-child(3) { animation-delay: 0.6s; }
+.menu-item:nth-child(4) { animation-delay: 0.8s; }
+.menu-item:nth-child(5) { animation-delay: 1s; }
+
+@keyframes bubbleFloat {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-12px); }
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
-}
-
-.menu-item:nth-child(odd) { animation-delay: 0.5s; }
-
+/* 💫 Bubble Style */
 .bubble {
-  background: radial-gradient(circle at top left, #00c6ff, #007f80);
+  background: linear-gradient(135deg, #00E8A2, #00FFD1, #7CFFC4);
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 95px;
+  height: 95px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 30px rgba(0,255,200,0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 200, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
-  transition: all 0.4s ease;
   position: relative;
 }
-
-.bubble::after {
-  content: "";
-  position: absolute;
-  width: 140%;
-  height: 140%;
-  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
-  transform: rotate(25deg);
-  top: -20%;
-  left: -20%;
-}
-
-.menu-item:hover .bubble {
-  transform: scale(1.1);
-  box-shadow: 0 0 45px rgba(0,255,180,0.6);
-}
-
 .bubble img {
   width: 60%;
   height: 60%;
   object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
+  z-index: 2;
 }
-
+.bubble::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.6), transparent 70%);
+  opacity: 0.6;
+}
+.bubble:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 35px rgba(0, 255, 200, 0.6);
+}
 .bubble-label {
   font-family: 'Raleway', sans-serif;
   margin-top: 12px;
   font-weight: 600;
-  color: #fff;
-  text-shadow: 0 0 6px rgba(0,0,0,0.4);
+  color: #0b0b0b;
+  letter-spacing: 0.5px;
 }
 
-/* Modal */
+/* 🪟 Modal */
 .modal {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
   display: none;
   justify-content: center;
   align-items: center;
-  animation: fadeIn 0.3s ease forwards;
-  z-index: 999;
+  z-index: 998;
   padding: 20px;
 }
-.modal.active { display: flex; }
-
+.modal.active {
+  display: flex;
+}
 .modal-content {
-  background: rgba(255, 255, 255, 0.97);
+  background: rgba(255, 255, 255, 0.95);
   color: #111;
   width: min(90%, 700px);
   max-height: 80vh;
   padding: 40px;
   border-radius: 16px;
-  text-align: left;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
   transform: translateY(30px);
   animation: popUp 0.4s ease forwards;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   overflow-y: auto;
-  font-family: 'Poppins', sans-serif;
-}
-
-.modal-content ul {
-  margin-top: 10px;
-  padding-left: 25px;
-  list-style-type: disc;
-}
-.modal-content li {
-  margin-bottom: 10px;
-  line-height: 1.6;
 }
 @keyframes popUp {
   from { transform: translateY(30px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
+}
+.modal-content h2 {
+  color: #00a685;
+  font-family: 'Raleway', sans-serif;
+  margin-bottom: 15px;
+}
+.modal-content ul {
+  padding-left: 25px;
+  list-style-type: disc;
 }
 .close-btn {
   display: block;
@@ -216,18 +186,12 @@ h1 {
   font-weight: bold;
   color: #00a685;
   cursor: pointer;
-  font-size: 1.1rem;
-}
-.modal-content h2 {
-  font-family: 'Raleway', sans-serif;
-  margin-bottom: 15px;
-  color: #00a685;
+  font-size: 1.2rem;
 }
 </style>
 </head>
 
 <body>
-
 <div class="glass-panel">
   <h1>Window Wise</h1>
   <p class="subtitle">Smart Project That Shows Brilliance</p>
@@ -262,56 +226,8 @@ h1 {
     <span class="close-btn">✖</span>
     <h2>Advantage</h2>
     <ul>
-      <li>Energy Efficiency</li>
-      <li>Enhanced Safety</li>
-      <li>Weather Protection</li>
-      <li>Real-time Notifications</li>
-      <li>Improved Air Quality</li>
-      <li>Cost Saving</li>
-      <li>Health Benefits</li>
+      <li><!-- Add your text here --></li>
     </ul>
-  </div>
-</div>
-
-<div class="modal" id="novelty">
-  <div class="modal-content">
-    <span class="close-btn">✖</span>
-    <h2>Novelty</h2>
-    <ul>
-      <li>Multi-Sensor Integration</li>
-      <li>Advanced Automation and Control</li>
-      <li>Comprehensive Environmental Management</li>
-      <li>Integration of IoT and Automation</li>
-      <li>Sustainability and Efficiency</li>
-      <li>Enhanced User Experience</li>
-    </ul>
-  </div>
-</div>
-
-<div class="modal" id="problem">
-  <div class="modal-content">
-    <span class="close-btn">✖</span>
-    <h2>Problem Statement</h2>
-    <p>Write your detailed explanation here...</p>
-  </div>
-</div>
-
-<div class="modal" id="commercial">
-  <div class="modal-content">
-    <span class="close-btn">✖</span>
-    <h2>Commercialization</h2>
-    <ul>
-      <li>Through Malaysia's Ministry of Local Government Development, we are able to reach our target audience.</li>
-      <li>Affordable pricing through e-commerce platforms like Shopee, Lazada, or Amazon.</li>
-    </ul>
-  </div>
-</div>
-
-<div class="modal" id="future">
-  <div class="modal-content">
-    <span class="close-btn">✖</span>
-    <h2>Future Plan</h2>
-    <p>Describe future updates or improvements.</p>
   </div>
 </div>
 
@@ -339,6 +255,5 @@ modals.forEach(modal => {
   });
 });
 </script>
-
 </body>
 </html>
