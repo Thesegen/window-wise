@@ -220,14 +220,70 @@ h1 {
   </div>
 </div>
 
-<!-- Modals -->
+<!-- Modals (text copied from your second code) -->
 <div class="modal" id="advantage">
   <div class="modal-content">
     <span class="close-btn">✖</span>
     <h2>Advantage</h2>
     <ul>
-      <li><!-- Add your text here --></li>
+      <li>Energy Efficiency</li>
+      <li>Enhanced Safety</li>
+      <li>Weather Protection</li>
+      <li>Real-time Notifications</li>
+      <li>Improved Air Quality</li>
+      <li>Cost Saving</li>
+      <li>Health Benefits</li>
     </ul>
+  </div>
+</div>
+
+<div class="modal" id="novelty">
+  <div class="modal-content">
+    <span class="close-btn">✖</span>
+    <h2>Novelty</h2>
+    <ul>
+      <li>Multi-Sensor Integration</li>
+      <li>Advanced Automation and Control</li>
+      <li>Comprehensive Environmental Management</li>
+      <li>Integration of IoT and Automation</li>
+      <li>Sustainability and Efficiency</li>
+      <li>Enhanced User Experience</li>
+    </ul>
+  </div>
+</div>
+
+<div class="modal" id="problem">
+  <div class="modal-content">
+    <span class="close-btn">✖</span>
+    <h2>Problem Statement</h2>
+    <p>
+      In modern residential buildings, managing indoor environments efficiently and ensuring safety while reducing energy consumption remains a significant challenge. Traditional window systems lack the automation needed to adapt to varying environmental conditions, leading to inefficient ventilation, increased energy use, and potential safety risks. For instance, windows often remain open during rain or close when it's unnecessary, and do not automatically respond to temperature changes, smoke detection, or external movement. To address these issues, there is a need for an intelligent window system that integrates various sensors to automate window operation based on real-time environmental data. The system must be capable of responding to rain, smoke, temperature fluctuations, and movement to optimize indoor comfort, enhance safety, and reduce reliance on HVAC systems. Additionally, it should provide real-time status updates and notifications to the user, ensuring effective management of the window's operation.
+    </p>
+  </div>
+</div>
+
+<div class="modal" id="commercial">
+  <div class="modal-content">
+    <span class="close-btn">✖</span>
+    <h2>Commercialization</h2>
+    <ul>
+      <li>Through Malaysia's Ministry of Local Government Development, we are able to reach our target audience.</li>
+      <li>Mention its business or social potential.</li>
+      <li>With a limited choice and affordable price on social media / online sales platform such as Shopee, Lazada, Mudah.com.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="modal" id="future">
+  <div class="modal-content">
+    <span class="close-btn">✖</span>
+    <h2>HVAC / Future Plan</h2>
+    <p>
+      HVAC stands for Heating, Ventilation, and Air Conditioning. It refers to the system used to regulate and maintain indoor climate in buildings. This system is crucial for maintaining comfort in various settings, including corporate environments and hospitals. In many buildings, windows are fixed and do not open or close. As a result, sunlight hitting these windows during the day can significantly increase the indoor temperature, causing HVAC systems, particularly air conditioners, to work harder to cool the space. This not only leads to higher electricity bills but also contributes to increased air pollution.
+    </p>
+    <p>
+      To address these challenges, we are implementing a solution involving photochromic films applied to the windows. These films automatically darken when exposed to sunlight, reducing heat buildup inside the building, and revert to a transparent state when sunlight is no longer present. This approach helps to lower energy consumption, reduce electricity costs, and decrease the overall environmental impact by lessening the reliance on air conditioning.
+    </p>
   </div>
 </div>
 
@@ -239,13 +295,15 @@ const closeBtns = document.querySelectorAll('.close-btn');
 menuItems.forEach(item => {
   item.addEventListener('click', () => {
     const modalId = item.getAttribute('data-modal');
-    document.getElementById(modalId).classList.add('active');
+    const target = document.getElementById(modalId);
+    if (target) target.classList.add('active');
   });
 });
 
 closeBtns.forEach(btn => {
   btn.addEventListener('click', () => {
-    btn.closest('.modal').classList.remove('active');
+    const modal = btn.closest('.modal');
+    if (modal) modal.classList.remove('active');
   });
 });
 
